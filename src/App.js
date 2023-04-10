@@ -1,42 +1,32 @@
 
 import './App.css';
-import  Button  from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import  Button  from 'react-bootstrap/Button';
 
-function App() {
+function Counter() {
+  let [cont, setCont] = useState(0);
+
+  const incrementar = () => {
+    setCont(cont++);
+  };
+
+  const disminuir = () => {
+    setCont(cont--);
+  };
+
   return (
-    <div className='App'>
+    <div className='App' >
       <header className='App-header'>
-        <h1>Contador de Vocales</h1>
-      <form onSubmit={presion}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label >Ingrese el texto:</Form.Label>
-        <Form.Control  type="text" name="texto" placeholder="Escribe..." />
-      </Form.Group>
-          <Button  type="submit">Mostrar</Button>
-        <p>
-         
-        </p>
-      </form>
+    
+      <Button className='Button' variant="success" onClick={incrementar}>Aumentar ↑</Button>
+      <p >CONTADOR:{cont}</p>
+      <Button className='Button2' variant="danger" onClick={disminuir}>Disminuir ↓</Button>
       </header>
     </div>
-    
+
   );
 }
 
-function presion(e) {
-  e.preventDefault();
-  const texto=(e.target.texto.value);
-  let cont=0;
-  let vocales= 'aeiouAEIOU';
-  for(let i = 0; i < texto.length; i++) {
-    if(vocales.indexOf(texto[i]) !== -1) {
-      cont ++;
-    }   
-  }
-  alert("Hay un total de "+cont);
-  return cont;
-}
-
-export default App;
+export default Counter;
